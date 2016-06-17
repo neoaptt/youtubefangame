@@ -58,13 +58,21 @@ nav ul li a{
     position: absolute;
     left: 100px;
     top: 0;
+    overflow-x: auto;
 }
 #row{
     position: relative;
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none;   /* Chrome/Safari/Opera */
+    -khtml-user-select: none;    /* Konqueror */
+    -moz-user-select: none;      /* Firefox */
+    -ms-user-select: none;       /* Internet Explorer/Edge */
+    user-select: none; 
 }
 #youtuber-emotion-container{
     background-color: blue;
-    margin: 10px;
+    margin: auto;
+    padding-top:10px;
     height: 500px;
     width: 500px;
     position: relative;
@@ -80,8 +88,35 @@ nav ul li a{
     bottom: 10px;
 }
 .progress > span {
-  display: block;
-  height: 100%;
-  background-color: rgb(43,194,83);
-  overflow: hidden;
+    display: block;
+    height: 100%;
+    background-color: rgb(43,194,83);
+    overflow: hidden;
+}
+#plan{
+    background-color: rgb(43,194,83);
+}
+#edit{
+    background-color: rgb(42, 141, 194);
+}
+#film{
+    background-color: rgb(194, 85, 42);
+}
+#production-container div{
+    height: 100px;
+    width: 167px;
+    display: inline-block;
+    cursor: pointer;
+    line-height: 50px;
+    text-align: center;
+    color: white;
+}
+#production-container{
+    display: -webkit-box;      /* OLD - iOS 6-, Safari 3.1-6 */
+    display: -moz-box;         /* OLD - Firefox 19- (buggy but mostly works) */
+    display: -ms-flexbox;      /* TWEENER - IE 10 */
+    display: -webkit-flex;     /* NEW - Chrome */
+    display: flex;             /* NEW, Spec - Opera 12.1, Firefox 20+ */
+    margin: auto;
+    width: 500px;
 }
