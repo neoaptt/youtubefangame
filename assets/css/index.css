@@ -120,3 +120,55 @@ nav ul li a{
     margin: auto;
     width: 500px;
 }
+#release{
+    margin: auto;
+    width: 500px;
+    height: 100px;
+    background-color: brown;
+    line-height: 100px;
+    text-align: center;
+    cursor: pointer;
+    color:white;
+}
+#stats{
+    margin: auto;
+    width: 500px;
+    min-height: 1px;
+    border: solid black 1px;
+    box-sizing: border-box;
+    padding: 10px;
+}
+#videos{
+    width: 500px;
+    margin: auto;
+    background-color: #eee;
+}
+.video{
+    padding: 10px;
+    display: -webkit-box;      /* OLD - iOS 6-, Safari 3.1-6 */
+    display: -moz-box;         /* OLD - Firefox 19- (buggy but mostly works) */
+    display: -ms-flexbox;      /* TWEENER - IE 10 */
+    display: -webkit-flex;     /* NEW - Chrome */
+    display: flex; 
+}
+.img{
+    width: 100px;
+    height: 100%;
+    margin: 10px;
+    line-height: 100px;
+    text-align: center;
+    display: inline-block;
+    background-color: black;
+    color: white;
+}
+.stat{
+    width: 400px;
+    display: inline-block;
+}
+footer{
+    width: 500px;
+    margin: auto;
+    text-align: center;
+    padding-top: 50px;
+    padding-bottom: 50px;
+}

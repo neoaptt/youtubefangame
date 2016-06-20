@@ -7,12 +7,17 @@ var edit = document.getElementById('edit');
 var editTXT = document.getElementById('editTXT');
 var film = document.getElementById('film');
 var filmTXT = document.getElementById('filmTXT');
+var release = document.getElementById('release');
 var happiness = 50;
 var folder = '';
 var imgName = '';
 var planVal = 0;
 var editVal = 0;
 var filmVal = 0;
+var money = 0;
+var subs = 0;
+var views = 0;
+var numVids = 0;
 for (var i = 0; i < avy.length; i++) {
     avy[i].onclick = selectAvy;
 }
@@ -20,6 +25,7 @@ emotionContainer.onclick = emotionClick;
 plan.onclick = planClick;
 edit.onclick = editClick;
 film.onclick = filmClick;
+release.onclick = releaseClick;
 avy[0].click();
 function selectAvy() {
     for (var i = 0; i < avy.length; i++) {
@@ -64,6 +70,11 @@ function filmClick() {
         changeBackground();
     }
 }
+function updateProduction() {
+    filmTXT.innerHTML = filmVal;
+    editTXT.innerHTML = editVal;
+    planTXT.innerHTML = planVal;
+}
 function changeBackground(force) {
     var bfolder = folder;
     if (happiness > 66) {
@@ -79,4 +90,13 @@ function changeBackground(force) {
     if (bfolder !== folder || force === true) {
         emotionContainer.style.background = "url('assets/img/emotion/" + folder + "/" + imgName + ".jpg') no-repeat center";
     }
+}
+function releaseClick() {
+    var pval = planVal;
+    planVal = 0;
+    var eval = editVal;
+    editVal = 0;
+    var fval = filmVal;
+    filmVal = 0;
+    updateProduction();
 }
