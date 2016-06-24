@@ -8,6 +8,10 @@ var editTXT = document.getElementById('editTXT');
 var film = document.getElementById('film');
 var filmTXT = document.getElementById('filmTXT');
 var release = document.getElementById('release');
+var videos = document.getElementById('videos');
+var allViews = document.getElementById('allViews');
+var allSubs = document.getElementById('allSubs');
+var allMoney = document.getElementById('allMoney');
 var happiness = 50;
 var folder = '';
 var imgName = '';
@@ -18,6 +22,7 @@ var money = 0;
 var subs = 0;
 var views = 0;
 var numVids = 0;
+var videoContainer = [];
 for (var i = 0; i < avy.length; i++) {
     avy[i].onclick = selectAvy;
 }
@@ -27,6 +32,8 @@ edit.onclick = editClick;
 film.onclick = filmClick;
 release.onclick = releaseClick;
 avy[0].click();
+setInterval(update, 1000);
+
 function selectAvy() {
     for (var i = 0; i < avy.length; i++) {
         avy[i].className = '';
@@ -93,10 +100,79 @@ function changeBackground(force) {
 }
 function releaseClick() {
     var pval = planVal;
-    planVal = 0;
     var eval = editVal;
-    editVal = 0;
     var fval = filmVal;
-    filmVal = 0;
-    updateProduction();
+    if (addVideo(pval, eval, fval)) {
+        planVal = 0;
+        editVal = 0;
+        filmVal = 0;
+        updateProduction();
+    }
+}
+function addVideo(pval, eval, fval) {
+    if (videoContainer.length < 3 && pval > 0 && eval > 0 && fval > 0) {
+        videoContainer.push(new video(pval, eval, fval));
+        return true;
+    } else {
+        return false;
+    }
+}
+function video(pval, eval, fval) {
+    var self = this;
+    self.newViews = (pval + eval + fval) + Math.floor(subs / 10);
+    self.newSubs = Math.floor(views / 100) + Math.floor((Math.random() * 10) + 1);
+    self.newMoney = Math.floor(views / 1000);
+    var html =
+            '<div class="video">'
+            + '<div class="img">'
+            + ++numVids
+            + '</div>'
+            + '<div class="stat">'
+            + '<p>Views: <span class="viewSpan">0</span></p>'
+            + '<p>Subscribers: <span class="subSpan">0</span></p>'
+            + '<p>Money: $<span class="moneySpan">0</span></p>'
+            + '</div>'
+            + '</div>';
+    var div = document.createElement('div');
+    div.innerHTML = html;
+    var elements = div.children[0];
+    self.viewSpan = elements.getElementsByClassName('viewSpan')[0];
+    self.subSpan = elements.getElementsByClassName('subSpan')[0];
+    self.moneySpan = elements.getElementsByClassName('moneySpan')[0];
+    self.video = videos.appendChild(elements);
+    self.life = 10;
+    self.tick = function () {
+        if (--self.life < 1) {
+            videos.removeChild(self.video);
+            return false;
+        } else {
+            console.log(self.viewSpan);
+            var nv = Math.floor(self.newViews / self.life);
+            var ns = Math.floor(self.newSubs / self.life);
+            self.viewSpan.innerHTML = Math.floor(self.newViews / self.life);
+            self.subSpan.innerHTML = Math.floor(self.newSubs / self.life);
+            self.moneySpan.innerHTML = Math.floor(self.newMoney / self.life);
+            views += self.newViews;
+            subs += self.newSubs;
+            money += self.newMoney;
+            return true;
+        }
+    };
+}
+function update() {
+    if (videoContainer.length > 0) {
+        var newContainer = [];
+        videoContainer.forEach(function (item, index) {
+            if (item.tick()) {
+                newContainer.push(item);
+            }
+        });
+        statUpdate();
+        videoContainer = newContainer;
+    }
+}
+function statUpdate() {
+    allViews.innerHTML = views;
+    allMoney.innerHTML = money;
+    allSubs.innerHTML = subs;
 }
