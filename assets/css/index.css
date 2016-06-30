@@ -139,6 +139,7 @@ nav ul li a{
     padding: 10px;
 }
 #videos{
+    min-height: 420px;
     width: 500px;
     margin: auto;
     background-color: #eee;
@@ -171,4 +172,11 @@ footer{
     text-align: center;
     padding-top: 50px;
     padding-bottom: 50px;
+}
+#option-window{
+    text-align: center;
+    padding: 50px;
+}
+.active {
+    background-color: red;
 }

@@ -12,6 +12,10 @@ var videos = document.getElementById('videos');
 var allViews = document.getElementById('allViews');
 var allSubs = document.getElementById('allSubs');
 var allMoney = document.getElementById('allMoney');
+var options = document.getElementById('options');
+var option_window = document.getElementById('option-window');
+var game_window = document.getElementById('game-window');
+var radio_buttons = document.getElementsByClassName('radio');
 var happiness = 50;
 var folder = '';
 var imgName = '';
@@ -22,18 +26,51 @@ var money = 0;
 var subs = 0;
 var views = 0;
 var numVids = 0;
+var difficulty = 10;
+var optionView = false;
 var videoContainer = [];
 for (var i = 0; i < avy.length; i++) {
     avy[i].onclick = selectAvy;
+}
+for (var i = 0; i < radio_buttons.length; i++) {
+    radio_buttons[i].onclick = radioClick;
 }
 emotionContainer.onclick = emotionClick;
 plan.onclick = planClick;
 edit.onclick = editClick;
 film.onclick = filmClick;
+options.onclick = optionsClick;
 release.onclick = releaseClick;
 avy[0].click();
 setInterval(update, 1000);
-
+option_window.style.display = 'none';
+function radioClick() {
+    for (var i = 0; i < radio_buttons.length; i++) {
+        radio_buttons[i].className = radio_buttons[i].className.replace(/\bactive\b/, '');
+    }
+    this.className += ' active';
+    switch (this.id) {
+        case 'easy':
+            difficulty = 10;
+            break;
+        case 'medium':
+            difficulty = 1;
+            break;
+        case 'hard':
+            difficulty = .1;
+            break;
+    }
+}
+function optionsClick() {
+    optionView = !optionView;
+    if (optionView) {
+        option_window.style.display = 'block';
+        game_window.style.display = 'none';
+    } else {
+        option_window.style.display = 'none';
+        game_window.style.display = 'block';
+    }
+}
 function selectAvy() {
     for (var i = 0; i < avy.length; i++) {
         avy[i].className = '';
@@ -119,7 +156,7 @@ function addVideo(pval, eval, fval) {
 }
 function video(pval, eval, fval) {
     var self = this;
-    self.newViews = (pval + eval + fval) + Math.floor(subs / 10);
+    self.newViews = (pval + eval + fval) + Math.floor(subs * difficulty);
     self.newSubs = Math.floor(views / 100) + Math.floor((Math.random() * 10) + 1);
     self.newMoney = Math.floor(views / 1000);
     var html =
@@ -146,15 +183,15 @@ function video(pval, eval, fval) {
             videos.removeChild(self.video);
             return false;
         } else {
-            console.log(self.viewSpan);
             var nv = Math.floor(self.newViews / self.life);
             var ns = Math.floor(self.newSubs / self.life);
-            self.viewSpan.innerHTML = Math.floor(self.newViews / self.life);
-            self.subSpan.innerHTML = Math.floor(self.newSubs / self.life);
-            self.moneySpan.innerHTML = Math.floor(self.newMoney / self.life);
-            views += self.newViews;
-            subs += self.newSubs;
-            money += self.newMoney;
+            var nm = Math.floor(self.newMoney / self.life);
+            views += nv - self.viewSpan.innerHTML;
+            subs += ns - self.subSpan.innerHTML;
+            money += nm - self.moneySpan.innerHTML;
+            self.viewSpan.innerHTML = nv;
+            self.subSpan.innerHTML = ns;
+            self.moneySpan.innerHTML = nm;
             return true;
         }
     };

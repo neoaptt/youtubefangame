@@ -12,46 +12,57 @@
             <ul>
                 <li class="link"><a href="https://www.youtube.com/channel/UCM10z1QbxMwQ3EexMAiUDTg" target="_blank">Watch This Please!</a></li>
                 <li class="link"><a href="https://github.com/neoaptt/youtubefangame" target="_blank">Github</a></li>
-                <li>Options</li>
-                <li>This is a WIP the full game will be released later this year.</li>
-                <li>v. Alpha 2016.06.20</li>
+                <li id="options">Options</li>
+                <li>WIP</li>
+                <li>v. Alpha 2016.06.30</li>
+                <li>Drew Malino was here!</li>
             </ul>
         </nav>
-        <div id="row">
-            <div id="youtuber-container">
-                <div style="background-image: url(assets/img/avy/mark.jpg)" data-name="Markiplier" data-image-name="mark"></div>
-                <div style="background-image: url(assets/img/avy/drew.jpg)" data-name="Drew Malino" data-image-name="drew"></div>
-                <div style="background-image: url(assets/img/avy/amanda.jpg)" data-name="Amanda Faye" data-image-name="amanda"></div>
-                <div style="background-image: url(assets/img/avy/matthias.jpg)" data-name="Matthias" data-image-name="matthias"></div>
-                <div style="background-image: url(assets/img/avy/joseph.jpg)" data-name="J-Fred" data-image-name="joseph"></div>
-                <div style="background-image: url(assets/img/avy/felix.jpg)" data-name="PewDiePie" data-image-name="felix"></div>
-                <div style="background-image: url(assets/img/avy/jack.jpg)" data-name="Jacksepticeye" data-image-name="jack"></div>
-            </div>
-            <div id="game-container">
-                <div id="youtuber-emotion-container">
-                    <div class="progress">
-                        <span id="happiness" style="width: 50%"></span>
+        <div id="game-window">
+            <div id="row">
+                <div id="youtuber-container">
+                    <div style="background-image: url(assets/img/avy/mark.jpg)" data-name="Markiplier" data-image-name="mark"></div>
+                    <div style="background-image: url(assets/img/avy/drew.jpg)" data-name="Drew Malino" data-image-name="drew"></div>
+                    <div style="background-image: url(assets/img/avy/amanda.jpg)" data-name="Amanda Faye" data-image-name="amanda"></div>
+                    <div style="background-image: url(assets/img/avy/matthias.jpg)" data-name="Matthias" data-image-name="matthias"></div>
+                    <div style="background-image: url(assets/img/avy/joseph.jpg)" data-name="J-Fred" data-image-name="joseph"></div>
+                    <div style="background-image: url(assets/img/avy/felix.jpg)" data-name="PewDiePie" data-image-name="felix"></div>
+                    <div style="background-image: url(assets/img/avy/jack.jpg)" data-name="Jacksepticeye" data-image-name="jack"></div>
+                </div>
+                <div id="game-container">
+                    <div id="youtuber-emotion-container">
+                        <div class="progress">
+                            <span id="happiness" style="width: 50%"></span>
+                        </div>
                     </div>
+                    <div id="production-container">
+                        <div id="plan">Plan<br><span id="planTXT">0</span></div>
+                        <div id="film">Film<br><span id="filmTXT">0</span></div>
+                        <div id="edit">Edit<br><span id="editTXT">0</span></div>
+                    </div>
+                    <div id="release">
+                        Release
+                    </div>
+                    <div id="stats">
+                        <p>Views: <span id="allViews">0</span></p>
+                        <p>Subscribers: <span id="allSubs">0</span></p>
+                        <p>Money: $<span id="allMoney">0</span></p>
+                    </div>
+                    <div id="videos">
+                    </div>
+                    <footer>
+                        Created By Neoaptt
+                    </footer>
                 </div>
-                <div id="production-container">
-                    <div id="plan">Plan<br><span id="planTXT">0</span></div>
-                    <div id="film">Film<br><span id="filmTXT">0</span></div>
-                    <div id="edit">Edit<br><span id="editTXT">0</span></div>
-                </div>
-                <div id="release">
-                    Release
-                </div>
-                <div id="stats">
-                    <p>Views: <span id="allViews">0</span></p>
-                    <p>Subscribers: <span id="allSubs">0</span></p>
-                    <p>Money: $<span id="allMoney">0</span></p>
-                </div>
-                <div id="videos">
-                </div>
-                <footer>
-                    Created By Neoaptt
-                </footer>
             </div>
+        </div>
+        <div id="option-window">
+                Difficulty
+                <div id="button-container">
+                    <button class="radio active" id="easy">Easy</button>
+                    <button class="radio" id="medium">Medium</button>
+                    <button class="radio" id="hard">Realistic</button>
+                </div>
         </div>
         <script src="assets/js/index.js" type="text/javascript" async defer></script>
     </body>
